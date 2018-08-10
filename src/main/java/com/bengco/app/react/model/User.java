@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.NaturalId;
 
-import com.bengco.app.react.model.abstracts.DateAudit;
+import com.bengco.app.react.model.audit.DateAudit;
 
 @Entity
 @Table(name = "user")

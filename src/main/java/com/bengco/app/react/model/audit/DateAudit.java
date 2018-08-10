@@ -1,4 +1,4 @@
-package com.bengco.app.react.model.abstracts;
+package com.bengco.app.react.model.audit;
 
 import java.io.Serializable;
 import java.time.Instant;

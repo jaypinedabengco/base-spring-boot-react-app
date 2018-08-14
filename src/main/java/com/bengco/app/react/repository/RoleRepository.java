@@ -9,4 +9,5 @@ import com.bengco.app.react.model.enums.RoleName;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
 	Optional<Role> findByName(RoleName roleName);
+	Role findFirstByName(RoleName roleName);
 }

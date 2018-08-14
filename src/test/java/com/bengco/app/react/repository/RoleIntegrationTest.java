@@ -30,22 +30,22 @@ public class RoleIntegrationTest {
     public void setup() {
 		
 		// initialize roles 		
-		Role roleUser = new Role();
-		roleUser.setId(1);
-		roleUser.setName(RoleName.ROLE_USER);
-		
-		Role roleAdmin = new Role();
-		roleAdmin.setId(2);
-		roleAdmin.setName(RoleName.ROLE_ADMIN);
-
-		roleRepository.save(roleUser);
-		roleRepository.save(roleAdmin);
+//		Role roleUser = new Role();
+//		roleUser.setId(1);
+//		roleUser.setName(RoleName.ROLE_USER);
+//		
+//		Role roleAdmin = new Role();
+//		roleAdmin.setId(2);
+//		roleAdmin.setName(RoleName.ROLE_ADMIN);
+//
+//		roleRepository.save(roleUser);
+//		roleRepository.save(roleAdmin);
 		
 	}
 	
 	@Test
 	public void testIfRoleUserExist() {
-		Role roleFound = roleRepository.findByName(RoleName.ROLE_USER).orElse(null);		
+		Role roleFound = roleRepository.findFirstByName(RoleName.ROLE_USER);		
 		assertThat(roleFound, notNullValue());
 	}
 }

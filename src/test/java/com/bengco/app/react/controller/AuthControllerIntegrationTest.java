@@ -55,23 +55,6 @@ public class AuthControllerIntegrationTest {
     	SIGNUP_REQUEST_DTO.setPassword("helloWorld");
 		SIGNUP_REQUEST_DTO.setUsername("johndoetest123");    	
     }
-    
-	@Before
-    public void setup() {
-		
-		// initialize roles 		
-		Role roleUser = new Role();
-		roleUser.setId(1);
-		roleUser.setName(RoleName.ROLE_USER);
-		
-		Role roleAdmin = new Role();
-		roleAdmin.setId(2);
-		roleAdmin.setName(RoleName.ROLE_ADMIN);
-
-		roleRepository.save(roleUser);
-		roleRepository.save(roleAdmin);
-
-	}
 	
 	@Test
 	public void givenUserSignup_then_get_2xx() throws Exception {

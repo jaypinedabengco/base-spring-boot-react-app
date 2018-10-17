@@ -6,6 +6,7 @@ import java.util.Collections;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.bengco.app.react.dto.ApiResponseDto;
 import com.bengco.app.react.dto.JwtAuthenticationResponseDto;
 import com.bengco.app.react.dto.LoginRequestDto;
+import com.bengco.app.react.dto.PageableResponseDto;
 import com.bengco.app.react.dto.SignupRequestDto;
 import com.bengco.app.react.exception.AppException;
 import com.bengco.app.react.model.Role;
@@ -52,7 +55,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDto loginRequestDto) {
+	public ResponseEntity<JwtAuthenticationResponseDto> authenticateUser(@Valid @RequestBody LoginRequestDto loginRequestDto) {
 
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequestDto.getUsernameOrEmail(), loginRequestDto.getPassword()));
@@ -64,7 +67,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequestDto signUpRequest) {
+    public ResponseEntity<ApiResponseDto> registerUser(@Valid @RequestBody SignupRequestDto signUpRequest) {
         if(userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<ApiResponseDto>(new ApiResponseDto(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
@@ -94,5 +97,11 @@ public class AuthController {
 
         return ResponseEntity.created(location).body(new ApiResponseDto(true, "User registered successfully"));
     }
+	
+	
+	@GetMapping("/test-page")
+	public PageableResponseDto<?> test(){
+		return null;
+	}
 
 }
